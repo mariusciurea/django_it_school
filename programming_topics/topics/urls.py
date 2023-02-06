@@ -9,5 +9,5 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('about/', views.about, name='about'),
     path('subtopic/<str:pk>', views.subtopics, name='subtopic'),
-
+    path('subtopic/post/<str:pk>', views.post, name='post'),
 ]

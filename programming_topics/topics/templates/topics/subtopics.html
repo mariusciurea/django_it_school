@@ -2,8 +2,19 @@
 
 {% block content %}
     <br>
-    <h1>{{data.name}}</h1>
+    <h1>{{topic.name}}</h1>
     <hr>
+    {% for subtopic in subtopics %}
+        <a class="text-decoration-none text-dark" href="{% url 'post' subtopic.id %}">
+            <div class="card text-bg-light mb-3" style="max-width: 18rem;">
+                <div class="card-header">@{{subtopic.user}}</div>
+                <div class="card-body">
+                <h5 class="card-title">{{subtopic.name}}</h5>
+                <p class="card-text">{{subtopic.content|truncatechars:50}}</p>
+                </div>
+            </div>
+        </a> 
+    {% endfor %}
 
 
 {% endblock %}
