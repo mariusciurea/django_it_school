@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <br>
+    <h1>Welcome to my home page!!!</h1>
+    <hr>
+        <ul>
+            {% for d in data %}
+                <li><a href="{% url 'subtopic' d.id %}">{{d.name}}</a></li>
+            {% endfor %}
+        </ul>
+
+
+{% endblock %}
