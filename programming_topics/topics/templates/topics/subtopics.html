@@ -2,7 +2,7 @@
 
 {% block content %}
     <br>
-    <a href="{% url 'post-form' %}">Create a post</a>
+   <div id="create-post" onclick="location.href='{% url 'post-form' %}'">Create a post</div>
     <h1>{{topic.name}}</h1>
     <hr>
     {% for subtopic in subtopics %}

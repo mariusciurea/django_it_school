@@ -3,12 +3,13 @@
 {% block content %}
     <br>
     <h1>Welcome to my home page!!!</h1>
-    <hr>
-        <ul>
-            {% for d in topics %}
-                <li><a class= "text-decoration-none text-dark" href="{% url 'subtopic' d.id %}">{{d.name}}</a></li>
-            {% endfor %}
-        </ul>
+    <hr> 
+        {% for d in topics %}
+            <div class="topics" onclick="location.href='{% url 'subtopic' d.id %}'">
+                {{d.name}}
+            </div>
+        {% endfor %}
+        
 
 
 {% endblock content %}

@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Topic, Subtopic
+from .models import Topic, Subtopic, Comments
 from .forms import SubtopicForm
+from django.contrib.auth.decorators import login_required
 import datetime
 
 # Create your views here.
@@ -39,10 +40,11 @@ def subtopics(request, pk):
 
 def post(request, pk):
     post = Subtopic.objects.get(id=pk)
-    context = {'post': post}
+    comments = post.comments_set.all().order_by('-date_created')
+    context = {'post': post, 'comments': comments}
     return render(request, 'topics/post.html', context)
 
-
+@login_required(login_url='user-login')
 def post_form(request):
     form = SubtopicForm()
     if request.method == 'POST':
@@ -55,10 +57,14 @@ def post_form(request):
     return render(request, 'topics/post_form.html', context)
 
 
+@login_required(login_url='user-login')
 def update(request, pk):
     post = Subtopic.objects.get(id=pk)
     form = SubtopicForm(instance=post)
     
+    if request.user != post.user:
+        return HttpResponse('<h1>Not allowed here!</h1>')
+
     if request.method == 'POST':
         form = SubtopicForm(request.POST, instance=post)
         if form.is_valid():
@@ -69,12 +75,17 @@ def update(request, pk):
     context = {'form': form}
     return render(request, 'topics/post_form.html', context)
 
+
+@login_required(login_url='user-login')
 def delete(request, pk):
     post = Subtopic.objects.get(id=pk)
 
+    if request.user != post.user:
+        return HttpResponse('<h1>Not allowed here!</h1>')
+
     if request.method == 'POST':
         post.delete()
-        return redirect('home')
+        return redirect(f'/subtopic/{post.topic.id}')
 
     return render(request, 'topics/delete_post.html')
 
