@@ -1,27 +1,47 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    {% if post.user == request.user %}
-        <a href="{% url 'post-update' post.id  %}">Edit</a>
-        <a href="{% url 'post-delete' post.id %}">Delete</a>
-    {% endif %}
-    <br>
-    <h2>{{post.name}}</h2>
-    <p>{{post.content}}</p>
-    <h6>{{post.date_created}}</h6>
-    <br>
-    <h4>Comments</h4>
-    <hr>
-    <div class="comments">
-        {% for comment in comments %}
-            <div class="user-comment">
-                <div>@{{comment.user}} {{ comment.date_created|timesince }}</div>
-                <div>{{comment.comment}}</div>
-
-            </div>
+    <div class="post-container">
+        <div class="main-post-content">
+            {% if post.user == request.user %}
+                <a class="post-update" href="{% url 'post-update' post.id  %}">Edit</a>
+                <a class="post-update" href="{% url 'post-delete' post.id %}">Delete</a>
+            {% endif %}
+            <br>
+            <h5>{{post.name}}</h5>
+            <p>{{post.content}}</p>
+            <p>{{post.date_created|timesince }} ago</p>
+            <br>
+            <h4>Comments</h4>
             <hr>
-        {% endfor %}
-    </div>
+            <div class="comments">
+                {% for comment in comments %}
+                    <div class="user-comment">
+                        <div>@{{comment.user}} {{ comment.date_created|timesince }}</div>
+                        <div>{{comment.comment}}</div>
 
+                    </div>
+                    <hr>
+                {% endfor %}
+            </div>
+
+            <div class="comments">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <input type="text" name="text" placeholder="write your comment here">
+                </form>
+            </div> 
+        </div>
+
+        <div class="members">
+            <br>
+            <h5>Members</h5>
+            <div>
+                {% for member in members %}
+                    <p>@{{member.username}}</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>  
 
 {% endblock %}

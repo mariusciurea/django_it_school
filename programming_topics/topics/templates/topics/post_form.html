@@ -5,8 +5,16 @@
 {% block content %}
     <form method="POST">
         {% csrf_token %}
-        {{form|crispy}}
+        <div>
+            <label for="id_topic">Topic Name</label>
+            {{form.name}}
+        </div>
+        <div>
+            <label for="id_content">Content</label>
+            {{form.content}}
+        </div>
         <input type="submit" value="Submit">
+        
     </form>
 
 {% endblock %}

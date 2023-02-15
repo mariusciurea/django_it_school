@@ -41,17 +41,38 @@ def subtopics(request, pk):
 def post(request, pk):
     post = Subtopic.objects.get(id=pk)
     comments = post.comments_set.all().order_by('-date_created')
-    context = {'post': post, 'comments': comments}
+    members = post.members.all()
+
+    if request.method == 'POST':
+        comment = request.POST.get('text')
+        Comments.objects.create(
+            user=request.user,
+            comment=comment,
+            post=post,
+        )
+        post.members.add(request.user)
+        return redirect('post', pk=post.id)
+
+    context = {'post': post, 'comments': comments, 'members': members}
     return render(request, 'topics/post.html', context)
 
 @login_required(login_url='user-login')
-def post_form(request):
+def post_form(request, pk):
     form = SubtopicForm()
+    topic = Topic.objects.get(id=pk)
+
     if request.method == 'POST':
-        form = SubtopicForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('home')
+        Subtopic.objects.create(
+            user=request.user,
+            topic=topic,
+            name=request.POST['name'],
+            content=request.POST.get('content')
+        )
+        return redirect('subtopic', pk=pk)
+        # form = SubtopicForm(request.POST)
+        # if form.is_valid():
+        #     form.save()
+        #     return redirect('home')
 
     context = {'form': form}
     return render(request, 'topics/post_form.html', context)
@@ -66,10 +87,14 @@ def update(request, pk):
         return HttpResponse('<h1>Not allowed here!</h1>')
 
     if request.method == 'POST':
-        form = SubtopicForm(request.POST, instance=post)
-        if form.is_valid():
-            form.save()
-            return redirect('post', pk=pk)
+        post.name = request.POST['name']
+        post.content = request.POST['content']
+        post.save()
+        return redirect('post', pk=pk)
+        # form = SubtopicForm(request.POST, instance=post)
+        # if form.is_valid():
+        #     form.save()
+        #     return redirect('post', pk=pk)
 
 
     context = {'form': form}

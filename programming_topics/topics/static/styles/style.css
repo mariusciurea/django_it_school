@@ -32,3 +32,30 @@
     cursor: pointer;
     width: 210px;
 }
+
+.post-update {
+    text-decoration: none;
+    background-color:#212529;
+    color: white;
+    padding-right: 3px;
+    padding-left: 3px;
+    border-radius: 5px;
+    margin-right: 6px;
+    text-align: center;
+}
+
+.post-update:hover {
+    text-decoration: none;
+    color: white;
+    background-color: rgb(91, 91, 91);
+    padding-left: 5px;
+}
+
+.post-container {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+}
+
+.main-post-content {
+    margin-right: 50px;
+}

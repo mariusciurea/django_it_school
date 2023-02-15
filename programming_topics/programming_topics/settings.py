@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-ov1ln0_8x*pkq)db#z*=+i4s&7et6zrz^7$#zxa_8ob$_(93vx
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'topics.apps.TopicsConfig',
     # 'topics' - nume aplicatie
-    
     'crispy_forms',
     'users.apps.UsersConfig'
 ]

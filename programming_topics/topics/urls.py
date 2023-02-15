@@ -10,7 +10,7 @@ urlpatterns = [
     path('about/', views.about, name='about'),
     path('subtopic/<str:pk>', views.subtopics, name='subtopic'),
     path('subtopic/post/<str:pk>', views.post, name='post'),
-    path('post-form/', views.post_form, name='post-form'),
+    path('post-form/<str:pk>', views.post_form, name='post-form'),
     path('update-post/<str:pk>', views.update, name='post-update'),
     path('delete-post/<str:pk>', views.delete, name='post-delete'),
 ]
