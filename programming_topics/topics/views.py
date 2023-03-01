@@ -115,6 +115,12 @@ def delete(request, pk):
     return render(request, 'topics/delete_post.html')
 
 
+def profile(request):
+    user_posts = Subtopic.objects.filter(user=request.user)
+    context = {'posts': user_posts}
+    return render(request, 'topics/profile.html', context)
+
+
 def about(request):
     # return HttpResponse('<h1>About page</h1>')
     return render(request, 'topics/about.html')

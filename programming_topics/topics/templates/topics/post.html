@@ -3,12 +3,13 @@
 {% block content %}
     <div class="post-container">
         <div class="main-post-content">
-            {% if post.user == request.user %}
+            <br>
+            <h2>{{post.name}}</h2>
+            {% if post.user == request.user or request.user.is_superuser %}
                 <a class="post-update" href="{% url 'post-update' post.id  %}">Edit</a>
                 <a class="post-update" href="{% url 'post-delete' post.id %}">Delete</a>
             {% endif %}
-            <br>
-            <h5>{{post.name}}</h5>
+            <hr>
             <p>{{post.content}}</p>
             <p>{{post.date_created|timesince }} ago</p>
             <br>
@@ -38,7 +39,7 @@
             <h5>Members</h5>
             <div>
                 {% for member in members %}
-                    <p>@{{member.username}}</p>
+                    <p><a href="#">@{{member.username}}</a></p>
                 {% endfor %}
             </div>
         </div>

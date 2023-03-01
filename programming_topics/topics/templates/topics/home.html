@@ -2,13 +2,15 @@
 
 {% block content %}
     <br>
-    <h1>Welcome to my home page!!!</h1>
+    <h1 id="title">Topicuri de programare</h1>
     <hr> 
+    <div class="container-topics">
         {% for d in topics %}
             <div class="topics" onclick="location.href='{% url 'subtopic' d.id %}'">
                 {{d.name}}
             </div>
         {% endfor %}
+    </div>
         
 
 

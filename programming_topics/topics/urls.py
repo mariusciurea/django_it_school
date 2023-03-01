@@ -13,4 +13,5 @@ urlpatterns = [
     path('post-form/<str:pk>', views.post_form, name='post-form'),
     path('update-post/<str:pk>', views.update, name='post-update'),
     path('delete-post/<str:pk>', views.delete, name='post-delete'),
+    path('profile/', views.profile, name='profile'),
 ]

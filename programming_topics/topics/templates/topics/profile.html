@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <br>
+    {% if request.user.is_authenticated %}
+        <h5>Welcome @{{request.user}}</h5>       
+    {% endif %}
+    <hr> 
+    <div class="container-profile">
+        <p>Here are your posts</p>
+        <ul class="user-posts">
+            {% for post in posts %}
+                <li>
+                    <a href="{% url 'post' post.id %}">{{post.name}}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+        
+
+
+{% endblock content %}

@@ -5,4 +5,4 @@ from .models import Subtopic
 class SubtopicForm(ModelForm):
     class Meta:
         model = Subtopic
-        fields = '__all__'
+        fields = ('name', 'content')

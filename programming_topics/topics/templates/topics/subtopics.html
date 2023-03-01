@@ -2,8 +2,8 @@
 
 {% block content %}
     <br>
-   <div id="create-post" onclick="location.href='{% url 'post-form' topic.id %}'">Create a post</div>
-    <h1>{{topic.name}}</h1>
+    <h1 id="title">{{topic.name}}</h1>  
+    <div id="create-post" onclick="location.href='{% url 'post-form' topic.id %}'">Create a post</div>
     <hr>
     {% for subtopic in subtopics %}
         <a class="text-decoration-none text-dark" href="{% url 'post' subtopic.id %}">
@@ -19,3 +19,4 @@
 
 
 {% endblock %}
+

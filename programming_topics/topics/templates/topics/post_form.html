@@ -5,14 +5,15 @@
 {% block content %}
     <form method="POST">
         {% csrf_token %}
-        <div>
-            <label for="id_topic">Topic Name</label>
+        <!-- <div class="mb-3">
+            <label for="id_topic" class="form-label">Topic Name</label>
             {{form.name}}
         </div>
-        <div>
-            <label for="id_content">Content</label>
+        <div class="mb-3">
+            <label for="id_content" class="form-label">Content</label>
             {{form.content}}
-        </div>
+        </div> -->
+        {{form|crispy}}
         <input type="submit" value="Submit">
         
     </form>

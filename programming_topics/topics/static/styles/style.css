@@ -2,6 +2,16 @@
     background-color: rgb(3, 129, 129);
 } */
 
+
+#title {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 45px;
+}
+
+.container-topics {
+    
+}
+
 .topics {
     /* border-style: solid;
     border-color: black; */
@@ -9,34 +19,31 @@
     margin-bottom: 2px;
     font-family: Arial;
     font-size: 30px;
+    /* border-bottom: 1px solid black; */
 }
 
 .topics:hover {
-    text-decoration: underline;
     color: rgb(83, 165, 224);
-    font-size: 34px;
     cursor: pointer;
 }
 
 #create-post {
     width: 200px;
     height: 37px;
-    background-color: black;
-    color: white;
+    color: black;
     border-radius: 10px;
-    text-align: center;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 #create-post:hover {
     cursor: pointer;
     width: 210px;
+    color: rgb(83, 165, 224)
 }
 
 .post-update {
     text-decoration: none;
-    background-color:#212529;
-    color: white;
+    color: black;
     padding-right: 3px;
     padding-left: 3px;
     border-radius: 5px;
@@ -46,8 +53,7 @@
 
 .post-update:hover {
     text-decoration: none;
-    color: white;
-    background-color: rgb(91, 91, 91);
+    color: rgb(83, 165, 224);
     padding-left: 5px;
 }
 
